@@ -24,6 +24,32 @@ public class EnemyDiff : MonoBehaviour
     {
         PropertyList.Add("health", true);
         PropertyList.Add("Speed", true);
+        PropertyList.Add("AttackRate", true);
+        difficultyHP.Add(0.2);
+        difficultyHP.Add(0.3);
+        difficultyHP.Add(0.3);
+        Enemydifficulty.Add(0.2);
+        Enemydifficulty.Add(0.3);
+        Enemydifficulty.Add(0.5);
+        difficultySpeed.Add(0.5);
+        difficultySpeed.Add(0.1);
+        difficultySpeed.Add(0.2);
+        difficultyAttackRate.Add(0.3);
+        difficultyAttackRate.Add(0.6);
+        difficultyAttackRate.Add(0.5);
+        baseHP.Add(30);
+        baseHP.Add(50);
+        baseHP.Add(50);
+        baseSpeed.Add(5);
+        baseSpeed.Add(1);
+        baseSpeed.Add(2);
+        baseEnemyNumber.Add(2);
+        baseEnemyNumber.Add(1);
+        baseEnemyNumber.Add(0.5);
+        baseAttackRate.Add(0.05);
+        baseAttackRate.Add(0.1);
+        baseAttackRate.Add(0.15);
+        
         //Invoke("health", 2.0f);
         //gameObject.SendMessage("health", 2.0f);
     }
@@ -32,11 +58,21 @@ public class EnemyDiff : MonoBehaviour
     void Update()
     {
 
-        int difflevel = 6;
+        int difflevel = 10;
         List<int> enemys = enemyNumberGenerator(difflevel);
-        List<int> enemyproperty = enemypropertyGenerator(difflevel, PropertyList);
+        Dictionary<string, List<double>> enemyproperty = enemypropertyGenerator(difflevel, PropertyList);
         List < List<int> > position  = enemypositionsGenerator(enemys);
 
+        Debug.Log(enemys.Count);
+        for (int i = 0; i < enemys.Count; i++)
+        {
+            Debug.Log(enemys[i]);
+            for (int j = 0; j < enemys[i]; j++)
+            {
+                Debug.Log("enemy type " + i + ", health: " + enemyproperty["health"][i] + ", speed: " + enemyproperty["Speed"][i] + ". location SpawnPoints" + position[i][j]);
+            }
+
+        }
     }
 
     void todoproperty(int difflevel)
@@ -65,7 +101,7 @@ public class EnemyDiff : MonoBehaviour
         int enemyNumber = enemyPrefabs.Count;
         for (int i = 0; i < enemyNumber; i++)
         {
-            re.Add(PropertyCal(difficultySpeed[i], difflevel, baseAttackRate[i], false));
+            re.Add(PropertyCal(difficultySpeed[i], difflevel, baseSpeed[i], false));
         }
         return re;
 
@@ -78,7 +114,7 @@ public class EnemyDiff : MonoBehaviour
         int enemyNumber = enemyPrefabs.Count;
         for (int i = 0; i < enemyNumber; i++)
         {
-            re.Add(PropertyCal(difficultyAttackRate[i], difflevel, baseHP[i], false));
+            re.Add(PropertyCal(difficultyAttackRate[i], difflevel, baseAttackRate[i], false));
         }
         return re;
 
@@ -124,15 +160,15 @@ public class EnemyDiff : MonoBehaviour
         int t = enemyPercentage(difflevel);
         for (int i = 0; i < t; i++)
         {
-            int ts = (int)enemyNumberCal(baseEnemyNumber[i], difflevel, Enemydifficulty[i], true);
+            int ts = (int)enemyNumberCal(Enemydifficulty[i], difflevel, baseEnemyNumber[i], true);
             re.Add(ts);
         }
         return re;
     }
 
-    List<int> enemypropertyGenerator(int difflevel, Dictionary<string, bool> PropertyList)
+    Dictionary<string, List<double>> enemypropertyGenerator(int difflevel, Dictionary<string, bool> PropertyList)
     {
-        List<int> re = new List<int>();
+        Dictionary<string, List<double>> re = new Dictionary<string, List<double>> ();
         int enemyNumber = enemyPrefabs.Count;
         foreach (KeyValuePair<string, bool> kvp in PropertyList)
         {
@@ -140,15 +176,15 @@ public class EnemyDiff : MonoBehaviour
             {
                 if (kvp.Key == "health")
                 {
-                    todoHP(difflevel);
+                    re.Add("health", todoHP(difflevel));
                 } 
-                else if (kvp.Key == "health")
+                else if (kvp.Key == "Speed")
                 {
-                    todoSpeed(difflevel);
+                    re.Add("Speed", todoSpeed(difflevel));
                 }
-                else if (kvp.Key == "health")
+                else if (kvp.Key == "AttackRate")
                 {
-                    todoAttackRate(difflevel);
+                    re.Add("AttackRate", todoAttackRate(difflevel));
                 }
             }
         }
