@@ -8,10 +8,16 @@ public class EnemyDiff : MonoBehaviour
 {
     [SerializeField] List<GameObject> enemyPrefabs;
     [SerializeField] List<Transform> enemySpawnPoints;
-    [SerializeField] int minHealth = 10, maxHealth = 100;
-    [SerializeField] int minSpeed = 1, maxSpeed = 10;
-    [SerializeField] bool randomSpawn = false;
     [SerializeField] Dictionary<string, bool> PropertyList = new Dictionary<string, bool>();
+    [SerializeField] bool randomSpawn = false;
+    [SerializeField] List<double> difficultyHP;
+    [SerializeField] List<double> Enemydifficulty;
+    [SerializeField] List<double> difficultySpeed;
+    [SerializeField] List<double> difficultyAttackRate;
+    [SerializeField] List<double> baseHP;
+    [SerializeField] List<double> baseSpeed;
+    [SerializeField] List<double> baseEnemyNumber;
+    [SerializeField] List<double> baseAttackRate;
 
     // Start is called before the first frame update
     void Start()
@@ -19,146 +25,134 @@ public class EnemyDiff : MonoBehaviour
         PropertyList.Add("health", true);
         PropertyList.Add("Speed", true);
         //Invoke("health", 2.0f);
-        gameObject.SendMessage("health", 2.0f);
+        //gameObject.SendMessage("health", 2.0f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        int difflevel = 10;
-        List<List<double>> property = enemypropertyGenerator(difflevel, PropertyList);
-        List<int> enemyNumbers = enemyNumberGenerator(difflevel, property);
-        List<List<int>> genpositions = enemypositionsGenerator(enemyNumbers);
-        for (int i = 0; i < enemyPrefabs.Count; i++)
-        {
-            Debug.Log("enemyPrefabs " + i + " Number " + enemyNumbers[i] + ",hp " + property[i][0]* maxHealth + ",Speed " + property[i][1]* maxSpeed);
-        }
-        //object[] lists = { };
-        //MethodInfo method = this.GetType().GetMethod("health");
-        //method.Invoke(this, lists);
 
+        int difflevel = 6;
+        List<int> enemys = enemyNumberGenerator(difflevel);
+        List<int> enemyproperty = enemypropertyGenerator(difflevel, PropertyList);
+        List < List<int> > position  = enemypositionsGenerator(enemys);
 
     }
 
-    //Adjusts spawned enemies based on difficulty, now one enemy per difficulty factor
-    List<int> enemyNumberGenerator(int difflevel, List<List<double>> property)
+    void todoproperty(int difflevel)
     {
-        
-        List<int> re = new List<int>();
-        int t = difflevel;
-        //Debug.Log("enemyPrefabs size " + enemyPrefabs.Count);
-        for (int i = 0; i < enemyPrefabs.Count; i++)
-        {
-            //Debug.Log("enemyPrefabs "+i);
-            List<double> pro = property[i];
-            double diff = calculatediff(pro);
-            int y = Random.Range(0, t);
-            int ts = Mathf.RoundToInt(enemyNumberStrategy(y) / (float)diff);
-            //Debug.Log("enemy number " + ts);
-            re.Add(ts);
-            t = t - y;
-        }
-        //float sds = (float)calculatediff(property[(enemyPrefabs.Count - 1)]);
-        //re.Add(Mathf.RoundToInt(enemyNumberStrategy(t) / sds));
-        return re;
-    }
-
-    double calculatediff(List<double> property)
-    {
-        double re = 0;
-        //Debug.Log(property.Count);
-        //Debug.Log(property.Count);
-        foreach (double ppe in property)
-        {
-            //Debug.Log(ppe);
-            re = re + ppe;
-        }
-        return re;
+        List<double> hp = todoHP(difflevel);
+        List<double> Speed = todoSpeed(difflevel);
+        List<double> AttackRate = todoAttackRate(difflevel);
     }
 
 
-    //public List<double> enemysPropertyPrefab
-    List<List<double>> enemypropertyGenerator(int difflevel, Dictionary<string, bool> dictionary)
-    {
-        List<List<double>> re = new List<List<double>>();
-        for (int i = 0; i < enemyPrefabs.Count; i++)
-        {
-            List<double> res = new List<double>();
-            foreach (KeyValuePair<string, bool> kvp in dictionary)
-            {
-                if (kvp.Value)
-                {
-                    //exclude behaviour
-                    //kvp.Key.Method();
-                    Debug.Log(kvp.Key);
-                    //double ra = Invoke(kvp.Key, 2.0f);
-                    //object[] lists = { };
-                    //MethodInfo addMethod = EnemyDiff.GetMethod("health");
-                    //object addValue = addMethod.Invoke(null, new object[] { });
-                    //typeof(EnemyDiff).GetMethod(kvp.Key).Invoke(null, lists);
-                    double r = 0;
-                    //double ras = (double)Invoke(kvp.Key, difflevel);
-                    if (kvp.Key=="health")
-                    {
-                        r = 0.5;
-                    } else if (kvp.Key == "Speed")
-                    {
-                        r = 0.8;
-                    }
-                    res.Add(r);
-                }
-            }
-            re.Add(res);
-        }
-            
-        //List<List<double>> property = enemypropertyGenerator(difflevel, dictionary);
-        return re;
-    }
-
-    List<double> propertyAssign(int difficulty)
+    List<double> todoHP(int difflevel)
     {
         List<double> re = new List<double>();
-        List<string> test = new List<string>(PropertyList.Keys);
-        for (int i = 0; i < test.Count; i++)
+        int enemyNumber = enemyPrefabs.Count;
+        for (int i = 0; i < enemyNumber; i++)
         {
-            double ds;
-            switch (test[i])
-            {
-                case "health":
-                    ds = difficulty * 20 + 10;
-                    re.Add(ds);
-                    break;
-                case "Speed":
-                    ds = difficulty * 0.1 + 1;
-                    re.Add(ds);
-                    break;
-        
-            }
+            re.Add(PropertyCal(difficultyHP[i], difflevel, baseHP[i],false));
         }
         return re;
     }
 
-    double health(int s)
+
+    List<double> todoSpeed(int difflevel)
     {
-
-        Debug.Log("health doing");
-        double re = 0.5;
+        List<double> re = new List<double>();
+        int enemyNumber = enemyPrefabs.Count;
+        for (int i = 0; i < enemyNumber; i++)
+        {
+            re.Add(PropertyCal(difficultySpeed[i], difflevel, baseAttackRate[i], false));
+        }
         return re;
-    }
 
-    double Speed(int s)
-    {
-
-        Debug.Log("Speed doing");
-        double re = 0.8;
-        return re;
     }
 
 
-
-    int enemyNumberStrategy(int difflevel)
+    List<double> todoAttackRate(int difflevel)
     {
-        return difflevel;
+        List<double> re = new List<double>();
+        int enemyNumber = enemyPrefabs.Count;
+        for (int i = 0; i < enemyNumber; i++)
+        {
+            re.Add(PropertyCal(difficultyAttackRate[i], difflevel, baseHP[i], false));
+        }
+        return re;
+
+    }
+
+
+    double PropertyCal(double difficultyEnem, int difficulty, double baseValue, bool v)
+    {
+        double re;
+        if (v)
+        {
+            re = difficultyEnem * difficulty / baseValue;
+        }
+        else
+        {
+            re = difficultyEnem * baseValue * difficulty;
+        }
+        return re;
+    }
+
+    double enemyNumberCal(double difficultyEnem, int difficulty, double baseValue, bool v)
+    {
+        double re;
+        if (v)
+        {
+            re = difficultyEnem * difficulty / baseValue;
+        }
+        else
+        {
+            re = difficultyEnem * baseValue * difficulty;
+        }
+        return re;
+    }
+
+    int enemyPercentage(int difflevel)
+    {
+        return Mathf.RoundToInt(enemyPrefabs.Count * difflevel / 10);
+    }
+
+    List<int> enemyNumberGenerator(int difflevel)
+    {
+        List<int> re = new List<int>();
+        int t = enemyPercentage(difflevel);
+        for (int i = 0; i < t; i++)
+        {
+            int ts = (int)enemyNumberCal(baseEnemyNumber[i], difflevel, Enemydifficulty[i], true);
+            re.Add(ts);
+        }
+        return re;
+    }
+
+    List<int> enemypropertyGenerator(int difflevel, Dictionary<string, bool> PropertyList)
+    {
+        List<int> re = new List<int>();
+        int enemyNumber = enemyPrefabs.Count;
+        foreach (KeyValuePair<string, bool> kvp in PropertyList)
+        {
+            if (kvp.Value)
+            {
+                if (kvp.Key == "health")
+                {
+                    todoHP(difflevel);
+                } 
+                else if (kvp.Key == "health")
+                {
+                    todoSpeed(difflevel);
+                }
+                else if (kvp.Key == "health")
+                {
+                    todoAttackRate(difflevel);
+                }
+            }
+        }
+        return re;
     }
     List<List<int>> enemypositionsGenerator(List<int> enemys)
     {
@@ -187,58 +181,6 @@ public class EnemyDiff : MonoBehaviour
         else
         {
             return 0;
-        }
-    }
-    //Strategy of Enemy Property adjustment, now only increase the value proportionally according to the difficulty
-    int PropertyGenStrategy(int min, int max, int ranseed, int stepin)
-    {
-        if (min + stepin * ranseed < max)
-        {
-            return min + stepin * ranseed;
-        }
-        else
-        {
-            return max;
-        }
-
-    }
-
-    //todo list: span signal, model adapter property adjustment.
-
-    //Adjusts spawned enemies based on difficulty, now one enemy per difficulty factor
-    List<int> oldenemyNumberGenerator(int difflevel)
-    {
-        List<int> re = new List<int>();
-        int t = difflevel;
-        for (int i = 0; i < enemyPrefabs.Count; i++)
-        {
-            int y = Random.Range(0, t);
-            re.Add(enemyNumberStrategy(y));
-            t = t - y;
-        }
-
-        return re;
-    }
-    void oldenemypropertyGenerator(int difflevel, List<int> enemys)
-    {
-        for (int i = 0; i < enemys.Count; i++)
-        {
-
-            int t = difflevel;//Difficulty factor
-            int y = Random.Range(0, t);
-            t = t - y;//Difficulty factor remaining
-            int health = PropertyGenStrategy(minHealth, maxHealth, y, 1);//using strategy adjustnment health
-            y = Random.Range(0, t);
-            t = t - y;//Difficulty factor remaining
-            int Speed = PropertyGenStrategy(minSpeed, maxSpeed, y, 1);//using strategy adjustnment speed
-
-            for (int j = 0; j < enemys[i]; j++)
-            {
-                int di = enemypositionGenerator();
-                //GameObject enemy = Instantiate(enemyPrefabs[i], enemySpawnPoints[di].position, transform.rotation);//return enemy object
-                Debug.Log("enemy type " + i + ", health: " + health + ", speed: " + Speed + ". location SpawnPoints" + di);
-            }
-
         }
     }
 
