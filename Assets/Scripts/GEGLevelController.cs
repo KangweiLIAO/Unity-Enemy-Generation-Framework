@@ -16,14 +16,13 @@ namespace GEGFramework
         {
         }
 
-
         //List<GEGTypeContainer> enemyTypeData;// = packedData.enemyTypeData;
         /// <summary>
         /// an example to run.
         /// </summary>
         /// <param name="difflevel">Difficulty level (from 0 to 10)</param>
         /// <returns></returns>
-        public void RunExample(GEGPackedData data, int diffLevel)
+        public List<int> RunExample(GEGPackedData data, int diffLevel)
         {
             List<int> enemys = EnemyNumberGenerator(GEGPackedData.enemyTypeData, diffLevel);
             EnemyPropertyGenerator(diffLevel, GEGPackedData.enemyTypeData);
@@ -78,7 +77,7 @@ namespace GEGFramework
             int t = Mathf.RoundToInt(enemies.Count * difflevel / 10);
             for (int i = 0; i < t; i++)
             {
-                int ts = (int)enemyNumberCal(enemies[i].diffFactor, difflevel, enemies[i].diffFactor, true);
+                int ts = (int)EnemyNumberCal(enemies[i].diffFactor, difflevel, enemies[i].diffFactor, true);
                 re.Add(ts);
             }
             return re;
