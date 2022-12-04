@@ -3,8 +3,8 @@ using UnityEngine;
 
 namespace GEGFramework {
     public interface IGEGController {
-        GEGCharacter Character { get; set; }
-        float Scaler { get; set; }
-        bool Proportional { get; set; }
+        GEGCharacter GEGCharacter { get; set; }
+        float IntensityScalar { get; set; }
+        bool IncreaseIntensity { get; set; }
     }
 }

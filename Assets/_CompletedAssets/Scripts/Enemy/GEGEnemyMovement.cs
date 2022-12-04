@@ -6,13 +6,13 @@ namespace CompleteProject {
     public class GEGEnemyMovement : MonoBehaviour, IGEGController {
 
         [field: SerializeField]
-        public GEGCharacter Character { get; set; }
+        public GEGCharacter GEGCharacter { get; set; }
 
         [field: SerializeField]
-        public float Scaler { get; set; }
+        public float IntensityScalar { get; set; }
 
         [field: SerializeField]
-        public bool Proportional { get; set; }
+        public bool IncreaseIntensity { get; set; }
 
         Transform player;                  // Reference to the player's position.
         GEGPlayerHealth playerHealth;      // Reference to the player's health.
@@ -29,8 +29,8 @@ namespace CompleteProject {
         }
 
         void OnEnable() {
-            string name = Character.name + "Speed";
-            nav.speed = Character[name].value;
+            string name = GEGCharacter.name + "Speed";
+            nav.speed = GEGCharacter[name].value;
             nav.acceleration = Mathf.Clamp(nav.speed / 10, 8, 15);
         }
 

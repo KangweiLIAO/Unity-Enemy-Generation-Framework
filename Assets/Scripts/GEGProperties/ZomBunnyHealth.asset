@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   propertyName: ZomBunnyHealth
   enabled: 1
-  value: 100
-  defaultValue: 100
-  importance: 50
+  value: 80
+  defaultValue: 80
+  importance: 100

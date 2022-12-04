@@ -6,13 +6,13 @@ namespace CompleteProject {
     public class GEGEnemyAttack : MonoBehaviour, IGEGController {
 
         [field: SerializeField]
-        public GEGCharacter Character { get; set; }
+        public GEGCharacter GEGCharacter { get; set; }
 
         [field: SerializeField]
-        public float Scaler { get; set; }
+        public float IntensityScalar { get; set; }
 
         [field: SerializeField]
-        public bool Proportional { get; set; }
+        public bool IncreaseIntensity { get; set; }
 
         public float timeBetweenAttacks;     // The time in seconds between each attack.
         public int attackDamage;               // The amount of health taken away per attack.
@@ -34,10 +34,10 @@ namespace CompleteProject {
         }
 
         void OnEnable() {
-            string damageName = Character.name + "Damage";
-            string rateName = Character.name + "AttackRate";
-            attackDamage = (int)Character[damageName].value;
-            timeBetweenAttacks = Character[rateName].value;
+            string damageName = GEGCharacter.name + "Damage";
+            string rateName = GEGCharacter.name + "AttackRate";
+            attackDamage = (int)GEGCharacter[damageName].value;
+            timeBetweenAttacks = GEGCharacter[rateName].value;
         }
 
 

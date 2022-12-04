@@ -5,13 +5,13 @@ namespace CompleteProject {
     public class GEGEnemyHealth : MonoBehaviour, IGEGController {
 
         [field: SerializeField]
-        public GEGCharacter Character { get; set; }
+        public GEGCharacter GEGCharacter { get; set; }
 
         [field: SerializeField]
-        public float Scaler { get; set; }
+        public float IntensityScalar { get; set; }
 
         [field: SerializeField]
-        public bool Proportional { get; set; }
+        public bool IncreaseIntensity { get; set; }
 
         public float startingHealth;                  // The amount of health the enemy starts the game with.
         public float currentHealth;                   // The current health the enemy has.
@@ -38,8 +38,8 @@ namespace CompleteProject {
         }
 
         void OnEnable() {
-            string name = Character.name + "Health";
-            startingHealth = Character[name].value;
+            string name = GEGCharacter.name + "Health";
+            startingHealth = GEGCharacter[name].value;
             currentHealth = startingHealth; // Setting the current health when the enemy first spawns.
         }
 
@@ -72,7 +72,7 @@ namespace CompleteProject {
             hitParticles.Play();
 
             IntensityManager.Instance.UpdateIntensity(currentHealth / startingHealth,
-                    Scaler, Proportional); // if taking damage, tell intensity manager
+                    IntensityScalar, IncreaseIntensity); // if taking damage, tell intensity manager
 
             // If the current health is less than or equal to zero...
             if (currentHealth <= 0) {

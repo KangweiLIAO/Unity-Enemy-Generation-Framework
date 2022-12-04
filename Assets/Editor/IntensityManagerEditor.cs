@@ -11,12 +11,19 @@ namespace GEGFramework {
         SerializedProperty autoDecreaseCooldown;
         SerializedProperty easyModeDuration;
         SerializedProperty hardModeDuration;
-        SerializedProperty hardModeThreshold;
+        SerializedProperty hardEntryThreshold;
         SerializedProperty expectedFelxibity;
         SerializedProperty expectEasyIntensity;
+        SerializedProperty easyIntensityIncScalar;
+        SerializedProperty easyIntensityDecScalar;
         SerializedProperty expectNormalIntensity;
+        SerializedProperty normalIntensityIncScalar;
+        SerializedProperty normalIntensityDecScalar;
         SerializedProperty expectHardIntensity;
+        SerializedProperty hardIntensityIncScalar;
+        SerializedProperty hardIntensityDecScalar;
         SerializedProperty maxAdjustment;
+        SerializedProperty cumulationRate;
         #endregion
 
         IntensityManager _target;
@@ -30,12 +37,22 @@ namespace GEGFramework {
             autoDecreaseCooldown = serializedObject.FindProperty("autoDecreaseCooldown");
             easyModeDuration = serializedObject.FindProperty("easyModeDuration");
             hardModeDuration = serializedObject.FindProperty("hardModeDuration");
-            hardModeThreshold = serializedObject.FindProperty("hardModeThreshold");
+            hardEntryThreshold = serializedObject.FindProperty("hardEntryThreshold");
             expectedFelxibity = serializedObject.FindProperty("expectedFelxibity");
-            expectEasyIntensity = serializedObject.FindProperty("expectEasyIntensity");
-            expectNormalIntensity = serializedObject.FindProperty("expectNormalIntensity");
-            expectHardIntensity = serializedObject.FindProperty("expectHardIntensity");
             maxAdjustment = serializedObject.FindProperty("maxAdjustment");
+            cumulationRate = serializedObject.FindProperty("cumulationRate");
+
+            expectEasyIntensity = serializedObject.FindProperty("expectEasyIntensity");
+            easyIntensityIncScalar = serializedObject.FindProperty("easyIntensityIncScalar");
+            easyIntensityDecScalar = serializedObject.FindProperty("easyIntensityDecScalar");
+
+            expectNormalIntensity = serializedObject.FindProperty("expectNormalIntensity");
+            normalIntensityIncScalar = serializedObject.FindProperty("normalIntensityIncScalar");
+            normalIntensityDecScalar = serializedObject.FindProperty("normalIntensityDecScalar");
+
+            expectHardIntensity = serializedObject.FindProperty("expectHardIntensity");
+            hardIntensityIncScalar = serializedObject.FindProperty("hardIntensityIncScalar");
+            hardIntensityDecScalar = serializedObject.FindProperty("hardIntensityDecScalar");
         }
 
         public override void OnInspectorGUI() {
@@ -46,6 +63,7 @@ namespace GEGFramework {
             EditorGUILayout.PropertyField(autoDecreaseCooldown);
             EditorGUILayout.PropertyField(expectedFelxibity);
             EditorGUILayout.PropertyField(maxAdjustment);
+            EditorGUILayout.PropertyField(cumulationRate);
 
             EditorGUILayout.Space(10);
             EditorGUILayout.LabelField("Duration Settings", EditorStyles.boldLabel);
@@ -62,15 +80,42 @@ namespace GEGFramework {
             EditorGUILayout.Space(10);
             EditorGUILayout.LabelField("Easy Mode Settings", EditorStyles.boldLabel);
             EditorGUILayout.PropertyField(expectEasyIntensity);
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.LabelField("Intensity Increment Scalar");
+            EditorGUILayout.PropertyField(easyIntensityIncScalar, GUIContent.none, true);
+            EditorGUILayout.EndHorizontal();
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.LabelField("Intensity Decrement Scalar");
+            EditorGUILayout.PropertyField(easyIntensityDecScalar, GUIContent.none, true);
+            EditorGUILayout.EndHorizontal();
 
             EditorGUILayout.Space(10);
             EditorGUILayout.LabelField("Normal Mode Settings", EditorStyles.boldLabel);
             EditorGUILayout.PropertyField(expectNormalIntensity);
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.LabelField("Intensity Increment Scalar");
+            EditorGUILayout.PropertyField(normalIntensityIncScalar, GUIContent.none, true);
+            EditorGUILayout.EndHorizontal();
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.LabelField("Intensity Decrement Scalar");
+            EditorGUILayout.PropertyField(normalIntensityDecScalar, GUIContent.none, true);
+            EditorGUILayout.EndHorizontal();
 
             EditorGUILayout.Space(10);
             EditorGUILayout.LabelField("Hard Mode Settings", EditorStyles.boldLabel);
-            EditorGUILayout.PropertyField(hardModeThreshold);
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.LabelField("Entry Threshold");
+            EditorGUILayout.PropertyField(hardEntryThreshold, GUIContent.none, true);
+            EditorGUILayout.EndHorizontal();
             EditorGUILayout.PropertyField(expectHardIntensity);
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.LabelField("Intensity Increment Scalar");
+            EditorGUILayout.PropertyField(hardIntensityIncScalar, GUIContent.none, true);
+            EditorGUILayout.EndHorizontal();
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.LabelField("Intensity Decrement Scalar");
+            EditorGUILayout.PropertyField(hardIntensityDecScalar, GUIContent.none, true);
+            EditorGUILayout.EndHorizontal();
 
             serializedObject.ApplyModifiedProperties();
         }

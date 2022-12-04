@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   propertyName: PlayerSpeed
   enabled: 0
-  value: 7
-  defaultValue: 7
+  value: 6
+  defaultValue: 6
   importance: 40

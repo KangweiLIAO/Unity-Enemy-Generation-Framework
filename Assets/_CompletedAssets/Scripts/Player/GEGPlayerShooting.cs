@@ -4,13 +4,13 @@ using GEGFramework;
 namespace CompleteProject {
     public class GEGPlayerShooting : MonoBehaviour, IGEGController {
         [field: SerializeField]
-        public GEGCharacter Character { get; set; }
+        public GEGCharacter GEGCharacter { get; set; }
 
         [field: SerializeField]
-        public float Scaler { get; set; }
+        public float IntensityScalar { get; set; }
 
         [field: SerializeField]
-        public bool Proportional { get; set; }
+        public bool IncreaseIntensity { get; set; }
 
         public int damagePerShot;                       // The damage inflicted by each bullet.
         public float timeBetweenBullets;                // The time between each shot.
@@ -42,9 +42,9 @@ namespace CompleteProject {
         }
 
         void Start() {
-            damagePerShot = (int)Character["PlayerDamage"].value;
-            timeBetweenBullets = Character["PlayerAttackRate"].value;
-            range = Character["PlayerAttackRange"].value;
+            damagePerShot = (int)GEGCharacter["PlayerDamage"].value;
+            timeBetweenBullets = GEGCharacter["PlayerAttackRate"].value;
+            range = GEGCharacter["PlayerAttackRange"].value;
         }
 
         void Update() {
@@ -84,7 +84,8 @@ namespace CompleteProject {
             timer = 0f;
 
             // Play the gun shot audioclip.
-            gunAudio.Play();
+            if (gunAudio != null)
+                gunAudio.Play();
 
             // Enable the lights.
             gunLight.enabled = true;

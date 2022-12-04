@@ -6,13 +6,13 @@ using GEGFramework;
 namespace CompleteProject {
     public class GEGPlayerMovement : MonoBehaviour, IGEGController {
         [field: SerializeField]
-        public GEGCharacter Character { get; set; }
+        public GEGCharacter GEGCharacter { get; set; }
 
         [field: SerializeField]
-        public float Scaler { get; set; }
+        public float IntensityScalar { get; set; }
 
         [field: SerializeField]
-        public bool Proportional { get; set; }
+        public bool IncreaseIntensity { get; set; }
 
         public float speed;            // The speed that the player will move at.
 
@@ -37,7 +37,7 @@ namespace CompleteProject {
         }
 
         void Start() {
-            speed = Character["PlayerSpeed"].value;
+            speed = GEGCharacter["PlayerSpeed"].value;
         }
 
         void FixedUpdate() {

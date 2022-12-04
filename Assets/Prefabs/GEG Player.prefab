@@ -52,9 +52,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 335c1e8e6bf3a6d4fae012ddae9526f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Character>k__BackingField: {fileID: 0}
-  <Scaler>k__BackingField: 0
-  <Proportional>k__BackingField: 0
+  <GEGCharacter>k__BackingField: {fileID: 11400000, guid: 228c9c539bc255b45a6528cb73c65e07,
+    type: 2}
+  <IntensityScalar>k__BackingField: 0
+  <IncreaseIntensity>k__BackingField: 0
   damagePerShot: 0
   timeBetweenBullets: 0
   range: 0
@@ -5305,9 +5306,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
-  m_Height: 1.2
+  m_Height: 2.5
   m_Direction: 1
-  m_Center: {x: 0.2, y: 0.6, z: 0}
+  m_Center: {x: 0.2, y: 1, z: 0}
 --- !u!82 &4355667489582804166
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5417,14 +5418,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffe42c0ec6aea2143ae67069190e18af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Character>k__BackingField: {fileID: 11400000, guid: 228c9c539bc255b45a6528cb73c65e07,
+  <GEGCharacter>k__BackingField: {fileID: 11400000, guid: 228c9c539bc255b45a6528cb73c65e07,
     type: 2}
-  <Scaler>k__BackingField: 1
-  <Proportional>k__BackingField: 1
+  <IntensityScalar>k__BackingField: 5
+  <IncreaseIntensity>k__BackingField: 1
   healthSlider: {fileID: 0}
   damageImage: {fileID: 0}
-  deathClip: {fileID: 0}
-  summonCost: 30
+  deathClip: {fileID: 8300000, guid: d36a393bca4582043982db9089e1694f, type: 3}
+  summonCost: 300
+  maxNumBros: 5
   flashSpeed: 5
   flashColour: {r: 1, g: 0, b: 0, a: 0.1}
   startingHealth: 0
@@ -5441,10 +5443,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9b1ba7cb29c03d44838e8c60a0d4326, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Character>k__BackingField: {fileID: 11400000, guid: 228c9c539bc255b45a6528cb73c65e07,
+  <GEGCharacter>k__BackingField: {fileID: 11400000, guid: 228c9c539bc255b45a6528cb73c65e07,
     type: 2}
-  <Scaler>k__BackingField: 2
-  <Proportional>k__BackingField: 1
+  <IntensityScalar>k__BackingField: 1
+  <IncreaseIntensity>k__BackingField: 1
   speed: 6
 --- !u!1 &4355667489580938532
 GameObject:

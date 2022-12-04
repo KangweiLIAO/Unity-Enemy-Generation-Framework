@@ -18,7 +18,7 @@ namespace GEGFramework {
 
         [TagSelector, SerializeField]
         string enemyTag; // tag for all enemies in the scene
-        
+
         [SerializeField, Tooltip("Time interval between spawning two enemies (in seconds)")]
         float maxSpawnInterval;
 
@@ -89,9 +89,14 @@ namespace GEGFramework {
                     float randSpawnInterval = Random.Range(0.5f, maxSpawnInterval);
                     int randPoint = Random.Range(0, PackedData.Instance.enemySpawnPoints.Count - 1); // spawn at random spawn point
 
-                    var inst = Instantiate(temp[randType].Prefab, PackedData.Instance.enemySpawnPoints[randPoint].position,
-                        temp[randType].Prefab.transform.rotation);
-                    inst.tag = enemyTag;
+                    var obj = GameObject.Find(PackedData.Instance.enemySpawnPoints[randPoint]);
+                    if (obj != null) {
+                        var inst = Instantiate(temp[randType].Prefab, obj.transform.position,
+                            temp[randType].Prefab.transform.rotation);
+                        inst.tag = enemyTag;
+                    } else {
+                        Debug.LogError("Spawn point not found");
+                    }
                     yield return new WaitForSeconds(randSpawnInterval);
 
                     if (temp[randType].Num - 1 > 0) // if character[i] has more instances to be spawned

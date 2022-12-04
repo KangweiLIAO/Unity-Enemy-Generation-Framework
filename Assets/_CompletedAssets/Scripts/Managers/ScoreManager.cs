@@ -4,11 +4,12 @@ using TMPro;
 namespace CompleteProject {
     public class ScoreManager : MonoBehaviour {
         public static int score;        // The player's score.
-        TextMeshProUGUI text;           // Reference to the Text component.
+        TextMeshProUGUI scoreText;           // Reference to the Text component.
+        [SerializeField] TextMeshProUGUI summonText;
 
         void Awake() {
             // Set up the reference.
-            text = GetComponent<TextMeshProUGUI>();
+            scoreText = GetComponent<TextMeshProUGUI>();
 
             // Reset the score.
             score = 0;
@@ -16,7 +17,9 @@ namespace CompleteProject {
 
         void Update() {
             // Set the displayed text to be the word "Score" followed by the score value.
-            text.text = "Score: " + score;
+            scoreText.text = "Score: " + score;
+            summonText.text = "Summon Cost: " + GameObject.Find("GEG Player").
+                GetComponent<GEGPlayerHealth>().summonCost;
         }
     }
 }

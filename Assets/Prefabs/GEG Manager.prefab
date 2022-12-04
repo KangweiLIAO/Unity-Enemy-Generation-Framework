@@ -561,15 +561,22 @@ MonoBehaviour:
   _intensity: 0
   currentMode: 0
   autoDecreaseAmount: 1
-  autoDecreaseCooldown: 3
+  autoDecreaseCooldown: 1
   easyModeDuration: 3
   hardModeDuration: 3
-  hardModeThreshold: 70
+  hardEntryThreshold: 70
+  maxAdjustment: 20
   expectedFelxibity: 5
   expectEasyIntensity: 5
-  expectNormalIntensity: 50
-  expectHardIntensity: 100
-  maxAdjustment: 10
+  easyIntensityIncScalar: 1
+  easyIntensityDecScalar: 5
+  expectNormalIntensity: 60
+  normalIntensityIncScalar: 1
+  normalIntensityDecScalar: 2
+  expectHardIntensity: 90
+  hardIntensityIncScalar: 1
+  hardIntensityDecScalar: 3
+  cumulationRate: 10
 --- !u!114 &2651012383412161553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -587,9 +594,9 @@ MonoBehaviour:
   defaultSpawning: 1
   spawnData:
     enemySpawnPoints:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
+    - SpawnPoint
+    - SpawnPoint 1
+    - SpawnPoint 2
     characters:
     - {fileID: 11400000, guid: 31a2bdfbe674c064ebb60ab486155dbb, type: 2}
     - {fileID: 11400000, guid: f6d8f53cce830c949a00109a69406610, type: 2}

@@ -17,11 +17,11 @@ namespace GEGFramework {
             }
         }
 
-        [SerializeField] public List<Transform> enemySpawnPoints;
+        [SerializeField] public List<string> enemySpawnPoints;
         [SerializeField] public List<GEGCharacter> characters;
 
         public PackedData() {
-            enemySpawnPoints = new List<Transform>();
+            enemySpawnPoints = new List<string>();
             characters = new List<GEGCharacter>();
         }
     }

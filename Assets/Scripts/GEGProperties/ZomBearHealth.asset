@@ -16,4 +16,4 @@ MonoBehaviour:
   enabled: 1
   value: 130
   defaultValue: 130
-  importance: 50
+  importance: 100
