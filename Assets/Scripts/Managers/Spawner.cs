@@ -16,7 +16,7 @@ namespace GEGFramework {
 
         public static Spawner Instance { get; private set; } // singleton instance
 
-        [TagSelector]
+        [TagSelector, SerializeField]
         string enemyTag; // tag for all enemies in the scene
         
         [SerializeField, Tooltip("Time interval between spawning two enemies (in seconds)")]
