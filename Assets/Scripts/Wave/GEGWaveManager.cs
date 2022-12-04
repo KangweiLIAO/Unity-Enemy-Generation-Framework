@@ -69,7 +69,6 @@ namespace GEGFramework
                     {
                         if (c.characters == c2)
                         {
-                            Debug.Log("equal");
                             c2.numNextWave = c.numberNextTurn;
                             for (int i = 0; i < c.properties.Count; i++)
                             {
@@ -77,8 +76,6 @@ namespace GEGFramework
                                 {
                                     if (prop.enabled && (prop == c.properties[i].getproperty()))
                                     {
-                                        Debug.Log(c.properties[i].getproperty() + "from " + prop.value + " update to " + c.properties[i].getvalue());
-                                        // if the property enabled for evaluation
                                         prop.value = c.properties[i].getvalue();
                                     }
                                 }
@@ -104,7 +101,6 @@ namespace GEGFramework
                     {
                         if (c.characters == c2)
                         {
-                            Debug.Log("equal");
                             c2.numNextWave = c.numberNextTurn;
                             for (int i = 0; i < c.properties.Count; i++)
                             {
@@ -112,8 +108,6 @@ namespace GEGFramework
                                 {
                                     if (prop.enabled && (prop == c.properties[i].getproperty()))
                                     {
-                                        Debug.Log(c.properties[i].getproperty() + "from " + prop.value + " update to " + c.properties[i].getvalue());
-                                        // if the property enabled for evaluation
                                         prop.value = c.properties[i].getvalue();
                                     }
                                 }
@@ -139,7 +133,6 @@ namespace GEGFramework
                     {
                         if (c.characters == c2)
                         {
-                            Debug.Log("equal");
                             c2.numNextWave = c.numberNextTurn;
                             for (int i = 0; i < c.properties.Count; i++)
                             {
@@ -147,8 +140,6 @@ namespace GEGFramework
                                 {
                                     if (prop.enabled && (prop == c.properties[i].getproperty()))
                                     {
-                                        Debug.Log(c.properties[i].getproperty() + "from " + prop.value + " update to " + c.properties[i].getvalue());
-                                        // if the property enabled for evaluation
                                         prop.value = c.properties[i].getvalue();
                                     }
                                 }
