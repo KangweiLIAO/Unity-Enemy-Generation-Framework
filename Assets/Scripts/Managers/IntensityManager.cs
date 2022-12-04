@@ -5,6 +5,7 @@ namespace GEGFramework {
     public sealed class IntensityManager : MonoBehaviour {
 
         public static event Action<float> OnIntensityChanged; // invoked once intensity value changed
+        public static event Action<GameMode> OnModeChanged; // invoked once intensity value changed
         public static IntensityManager Instance { get; private set; } // singleton instance
 
         [SerializeField, Range(0, 100)]
@@ -21,10 +22,10 @@ namespace GEGFramework {
         float autoDecreaseCooldown;
 
         [SerializeField, Tooltip("Persistence of easy mode (in waves)")]
-        int easyModeDuration;
+        public int easyModeDuration;
 
         [SerializeField, Tooltip("Persistence of hard mode (in waves)")]
-        int hardModeDuration;
+        public int hardModeDuration;
 
         [SerializeField, Tooltip("The threshold (in intensity value) that triggers the hard mode")]
         float hardModeThreshold;
@@ -55,6 +56,7 @@ namespace GEGFramework {
             durationCounter = 0;
             coolDownTimer = autoDecreaseCooldown;
             OnIntensityChanged?.Invoke(_intensity);
+            OnModeChanged?.Invoke(currentMode);
         }
 
         void OnEnable() {
@@ -103,43 +105,46 @@ namespace GEGFramework {
                     if (durationCounter > easyModeDuration) {
                         durationCounter = 0;
                         currentMode = GameMode.Normal;
+                        OnModeChanged?.Invoke(currentMode);
                     }
                     if (_intensity > expectEasyIntensity + expectedFelxibity) { // relax mode is too hard
                         UpdateAllEnemyProperty(false, maxAdjustment);
                     } else if (_intensity < expectEasyIntensity - expectedFelxibity) { // relax mode is too easy
                         UpdateAllEnemyProperty(true, maxAdjustment);
                     } // else within expect intensity
-                    UpdateEnemyQuantity(0, 2);
-                    UpdateEnemyQuantity(1, 0);
-                    UpdateEnemyQuantity(2, 0);
+                    //UpdateEnemyQuantity(0, 2);
+                    //UpdateEnemyQuantity(1, 0);
+                    //UpdateEnemyQuantity(2, 0);
                     break;
                 case GameMode.Normal:
                     if (_intensity >= hardModeThreshold) {
                         durationCounter = 0;
                         currentMode = GameMode.Hard;
+                        OnModeChanged?.Invoke(currentMode);
                     }
                     if (_intensity > expectNormalIntensity + expectedFelxibity) { // normal mode is too hard
                         UpdateAllEnemyProperty(false, maxAdjustment);
                     } else if (_intensity < expectNormalIntensity - expectedFelxibity) { // normal mode is too easy
                         UpdateAllEnemyProperty(true, maxAdjustment);
                     }
-                    UpdateEnemyQuantity(0, 2);
-                    UpdateEnemyQuantity(1, 2);
-                    UpdateEnemyQuantity(2, 0);
+                    //UpdateEnemyQuantity(0, 2);
+                    //UpdateEnemyQuantity(1, 2);
+                    //UpdateEnemyQuantity(2, 0);
                     break;
                 case GameMode.Hard:
                     if (durationCounter > hardModeDuration) {
                         durationCounter = 0;
                         currentMode = GameMode.Easy;
+                        OnModeChanged?.Invoke(currentMode);
                     }
                     if (_intensity > expectHardIntensity + expectedFelxibity) { // hard mode is too hard
                         UpdateAllEnemyProperty(false, maxAdjustment);
                     } else if (_intensity < expectHardIntensity - expectedFelxibity) { // hard mode is too easy
                         UpdateAllEnemyProperty(true, maxAdjustment);
                     }
-                    UpdateEnemyQuantity(0, 2);
-                    UpdateEnemyQuantity(1, 2);
-                    UpdateEnemyQuantity(2, 2);
+                    //UpdateEnemyQuantity(0, 2);
+                    //UpdateEnemyQuantity(1, 2);
+                    //UpdateEnemyQuantity(2, 2);
                     break;
             }
         }
