@@ -34,8 +34,10 @@ namespace CompleteProject {
         }
 
         void OnEnable() {
-            attackDamage = (int)Character["EnemyDamage"].value;
-            timeBetweenAttacks = Character["EnemyAttackRate"].value;
+            string damageName = Character.name + "Damage";
+            string rateName = Character.name + "AttackRate";
+            attackDamage = (int)Character[damageName].value;
+            timeBetweenAttacks = Character[rateName].value;
         }
 
 

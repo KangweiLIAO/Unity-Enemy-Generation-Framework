@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1aca71c616109d947aa6664d7f1c9e74, type: 3}
-  m_Name: ZomBunney
+  m_Name: ZomBunny
   m_EditorClassIdentifier: 
   prefab: {fileID: 6935001879544263520, guid: 3cbbf6fa96158ed4ebf2ad3d6ab66ee1, type: 3}
   type: 1
+  numNextWave: 2
   properties:
   - {fileID: 11400000, guid: ae971a4d92949724cb10f8e7c89d326d, type: 2}
   - {fileID: 11400000, guid: 2ff4022437d5c724786f4201e257f94a, type: 2}
-  - {fileID: 11400000, guid: 1c44637b5a4baad40a7ca9c114028cdb, type: 2}
+  - {fileID: 11400000, guid: e14b802517ed06c4c96ae2179c954bbc, type: 2}
   - {fileID: 11400000, guid: bdcb354d73bab4946bb6290fc792c7ba, type: 2}
-  numNextWave: 0

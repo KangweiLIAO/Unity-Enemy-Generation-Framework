@@ -38,7 +38,8 @@ namespace CompleteProject {
         }
 
         void OnEnable() {
-            startingHealth = Character["EnemyHealth"].value;
+            string name = Character.name + "Health";
+            startingHealth = Character[name].value;
             currentHealth = startingHealth; // Setting the current health when the enemy first spawns.
         }
 
