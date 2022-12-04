@@ -15,4 +15,4 @@ MonoBehaviour:
   keepTime: 120
   numKeepTurn: 2
   characters:
-  - {fileID: 11400000, guid: 1dcb558f40a6b1e4ab227bb3072ceec9, type: 2}
+  - {fileID: 11400000, guid: 02d42815687790446bb7050799149895, type: 2}

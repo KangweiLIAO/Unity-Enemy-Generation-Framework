@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0704ad338d64eec459bbcc7d7fa0d2ec, type: 3}
-  m_Name: GEGeasyenemy 1
+  m_Name: GEGhardenemy1
   m_EditorClassIdentifier: 
-  numberNextTurn: 5
+  numberNextTurn: 2
   characters: {fileID: 11400000, guid: b3dab9feb236ee442b797ab88c3f6255, type: 2}
   properties:
   - property: {fileID: 11400000, guid: e6a8c49b882da524e8794f442cab2d0f, type: 2}
-    value: 0.7
+    value: 1
   - property: {fileID: 11400000, guid: f223fc8fe77d45941824b59470844593, type: 2}
-    value: 10
+    value: 30
   - property: {fileID: 11400000, guid: f62d67de4f3cf9648b257be486e5524b, type: 2}
-    value: 100
+    value: 150
   - property: {fileID: 11400000, guid: 017287deee6dacb4e802ddbfc94512c6, type: 2}
-    value: 4
+    value: 8

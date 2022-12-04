@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 83ddd9f963b72e9429bdaf5aed79450f, type: 3}
-  m_Name: GEGWave
+  m_Name: GEGnormalWave
   m_EditorClassIdentifier: 
   keepTime: 0
   numKeepTurn: 0

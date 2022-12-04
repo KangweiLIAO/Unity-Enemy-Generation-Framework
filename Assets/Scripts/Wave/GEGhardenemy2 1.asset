@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0704ad338d64eec459bbcc7d7fa0d2ec, type: 3}
+  m_Name: GEGhardenemy2 1
+  m_EditorClassIdentifier: 
+  numberNextTurn: 2
+  characters: {fileID: 11400000, guid: 31a2bdfbe674c064ebb60ab486155dbb, type: 2}
+  properties:
+  - property: {fileID: 11400000, guid: ae971a4d92949724cb10f8e7c89d326d, type: 2}
+    value: 1.5
+  - property: {fileID: 11400000, guid: 2ff4022437d5c724786f4201e257f94a, type: 2}
+    value: 30
+  - property: {fileID: 11400000, guid: e14b802517ed06c4c96ae2179c954bbc, type: 2}
+    value: 120
+  - property: {fileID: 11400000, guid: bdcb354d73bab4946bb6290fc792c7ba, type: 2}
+    value: 10
