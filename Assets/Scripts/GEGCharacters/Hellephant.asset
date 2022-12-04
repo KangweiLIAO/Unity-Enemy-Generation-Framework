@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 5864607147014487109, guid: 755977e03bac859478ffe9ab8c6c3400, type: 3}
   type: 1
-  numNextWave: 2
   properties:
-  - {fileID: 11400000, guid: e6a8c49b882da524e8794f442cab2d0f, type: 2}
-  - {fileID: 11400000, guid: f223fc8fe77d45941824b59470844593, type: 2}
-  - {fileID: 11400000, guid: f62d67de4f3cf9648b257be486e5524b, type: 2}
-  - {fileID: 11400000, guid: 017287deee6dacb4e802ddbfc94512c6, type: 2}
+  - {fileID: 11400000, guid: ae971a4d92949724cb10f8e7c89d326d, type: 2}
+  - {fileID: 11400000, guid: 2ff4022437d5c724786f4201e257f94a, type: 2}
+  - {fileID: 11400000, guid: 1c44637b5a4baad40a7ca9c114028cdb, type: 2}
+  - {fileID: 11400000, guid: bdcb354d73bab4946bb6290fc792c7ba, type: 2}
+  numNextWave: 0

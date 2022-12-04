@@ -29,8 +29,7 @@ namespace CompleteProject {
         }
 
         void OnEnable() {
-            string name = Character.name + "Speed";
-            nav.speed = Character[name].value;
+            nav.speed = Character["EnemySpeed"].value;
             nav.acceleration = Mathf.Clamp(nav.speed / 10, 8, 15);
         }
 

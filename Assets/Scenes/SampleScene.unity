@@ -4674,7 +4674,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 8170618345559209792}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
@@ -5323,7 +5323,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 8170618345559209792}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
@@ -5350,11 +5350,6 @@ PrefabInstance:
       propertyPath: healthSlider
       value: 
       objectReference: {fileID: 995464970}
-    - target: {fileID: 4062646420266089366, guid: f4e36c0e254f6d5429589e1768986123,
-        type: 3}
-      propertyPath: <Scaler>k__BackingField
-      value: 11.68
-      objectReference: {fileID: 0}
     - target: {fileID: 4355667489580938530, guid: f4e36c0e254f6d5429589e1768986123,
         type: 3}
       propertyPath: m_Name
@@ -5526,17 +5521,12 @@ PrefabInstance:
     - target: {fileID: 2808165457663979716, guid: 79df83b4c974de44e9a5bf5dd5938b9b,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3743787262614403139, guid: 79df83b4c974de44e9a5bf5dd5938b9b,
         type: 3}
       propertyPath: debugEnabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3959432167049201277, guid: 79df83b4c974de44e9a5bf5dd5938b9b,
-        type: 3}
-      propertyPath: autoDecreaseCooldown
-      value: 5.43
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4642523825903626000, guid: 79df83b4c974de44e9a5bf5dd5938b9b,
         type: 3}
@@ -5571,7 +5561,7 @@ PrefabInstance:
     - target: {fileID: 7924717750670119583, guid: 79df83b4c974de44e9a5bf5dd5938b9b,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8170618343774549855, guid: 79df83b4c974de44e9a5bf5dd5938b9b,
         type: 3}
