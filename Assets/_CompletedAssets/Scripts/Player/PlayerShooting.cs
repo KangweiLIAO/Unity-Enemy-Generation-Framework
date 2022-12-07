@@ -9,7 +9,6 @@ namespace CompleteProject
         public float timeBetweenBullets = 0.15f;        // The time between each shot.
         public float range = 100f;                      // The distance the gun can fire.
 
-
         float timer;                                    // A timer to determine when to fire.
         Ray shootRay = new Ray();                       // A ray from the gun end forwards.
         RaycastHit shootHit;                            // A raycast hit to get information about what was hit.
@@ -20,7 +19,6 @@ namespace CompleteProject
         Light gunLight;                                 // Reference to the light component.
 		public Light faceLight;								// Duh
         float effectsDisplayTime = 0.2f;                // The proportion of the timeBetweenBullets that the effects will display for.
-
 
         void Awake ()
         {

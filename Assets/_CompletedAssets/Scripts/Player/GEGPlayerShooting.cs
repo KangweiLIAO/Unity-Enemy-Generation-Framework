@@ -1,21 +1,20 @@
 ﻿using UnityEngine;
 using GEGFramework;
 
-namespace CompleteProject
-{
-    public class GEGPlayerShooting : MonoBehaviour, IGEGController
-    {
-        public GEGCharacter _character;
-        public GEGCharacter Character
-        {
-            get => _character;
-            set => _character = value;
-        }
+namespace CompleteProject {
+    public class GEGPlayerShooting : MonoBehaviour, IGEGController {
+        [field: SerializeField]
+        public GEGCharacter GEGCharacter { get; set; }
 
+        [field: SerializeField]
+        public float IntensityScalar { get; set; }
 
-        public int damagePerShot;                  // The damage inflicted by each bullet.
-        public float timeBetweenBullets;        // The time between each shot.
-        public float range;                      // The distance the gun can fire.
+        [field: SerializeField]
+        public bool IncreaseIntensity { get; set; }
+
+        public int damagePerShot;                       // The damage inflicted by each bullet.
+        public float timeBetweenBullets;                // The time between each shot.
+        public float range;                             // The distance the gun can fire.
 
 
         float timer;                                    // A timer to determine when to fire.
@@ -26,41 +25,35 @@ namespace CompleteProject
         LineRenderer gunLine;                           // Reference to the line renderer.
         AudioSource gunAudio;                           // Reference to the audio source.
         Light gunLight;                                 // Reference to the light component.
-		public Light faceLight;								// Duh
+        public Light faceLight;						    // Duh
         float effectsDisplayTime = 0.2f;                // The proportion of the timeBetweenBullets that the effects will display for.
 
 
-        void Awake ()
-        {
+        void Awake() {
             // Create a layer mask for the Shootable layer.
-            shootableMask = LayerMask.GetMask ("Shootable");
+            shootableMask = LayerMask.GetMask("Shootable");
 
             // Set up the references.
-            gunParticles = GetComponent<ParticleSystem> ();
-            gunLine = GetComponent <LineRenderer> ();
-            gunAudio = GetComponent<AudioSource> ();
-            gunLight = GetComponent<Light> ();
+            gunParticles = GetComponent<ParticleSystem>();
+            gunLine = GetComponent<LineRenderer>();
+            gunAudio = GetComponent<AudioSource>();
+            gunLight = GetComponent<Light>();
             //faceLight = GetComponentInChildren<Light> ();
-
-
-            
-        }
-        void Start()
-        {
-            damagePerShot = (int)_character["PlayerDamage"].defaultValue;
-            timeBetweenBullets = _character["PlayerAttackRate"].defaultValue;
-            range = _character["PlayerAttackRange"].defaultValue;
         }
 
-        void Update()
-        {
+        void Start() {
+            damagePerShot = (int)GEGCharacter["PlayerDamage"].value;
+            timeBetweenBullets = GEGCharacter["PlayerAttackRate"].value;
+            range = GEGCharacter["PlayerAttackRange"].value;
+        }
+
+        void Update() {
             // Add the time since Update was last called to the timer.
             timer += Time.deltaTime;
 
 #if !MOBILE_INPUT
             // If the Fire1 button is being press and it's time to fire...
-            if (Input.GetButton("Fire1") && timer >= timeBetweenBullets && Time.timeScale != 0)
-            {
+            if (Input.GetButton("Fire1") && timer >= timeBetweenBullets && Time.timeScale != 0) {
                 // ... shoot the gun.
                 Shoot();
             }
@@ -73,30 +66,26 @@ namespace CompleteProject
             }
 #endif
             // If the timer has exceeded the proportion of timeBetweenBullets that the effects should be displayed for...
-            if (timer >= timeBetweenBullets * effectsDisplayTime)
-            {
+            if (timer >= timeBetweenBullets * effectsDisplayTime) {
                 // ... disable the effects.
                 DisableEffects();
             }
         }
 
-
-        public void DisableEffects()
-        {
+        public void DisableEffects() {
             // Disable the line renderer and the light.
             gunLine.enabled = false;
             faceLight.enabled = false;
             gunLight.enabled = false;
         }
 
-
-        void Shoot()
-        {
+        void Shoot() {
             // Reset the timer.
             timer = 0f;
 
             // Play the gun shot audioclip.
-            gunAudio.Play();
+            if (gunAudio != null)
+                gunAudio.Play();
 
             // Enable the lights.
             gunLight.enabled = true;
@@ -115,14 +104,12 @@ namespace CompleteProject
             shootRay.direction = transform.forward;
 
             // Perform the raycast against gameobjects on the shootable layer and if it hits something...
-            if (Physics.Raycast(shootRay, out shootHit, range, shootableMask))
-            {
+            if (Physics.Raycast(shootRay, out shootHit, range, shootableMask)) {
                 // Try and find an EnemyHealth script on the gameobject hit.
                 GEGEnemyHealth enemyHealth = shootHit.collider.GetComponent<GEGEnemyHealth>();
 
                 // If the EnemyHealth component exist...
-                if (enemyHealth != null)
-                {
+                if (enemyHealth != null) {
                     // ... the enemy should take damage.
                     enemyHealth.TakeDamage(damagePerShot, shootHit.point);
                 }
@@ -131,8 +118,7 @@ namespace CompleteProject
                 gunLine.SetPosition(1, shootHit.point);
             }
             // If the raycast didn't hit anything on the shootable layer...
-            else
-            {
+            else {
                 // ... set the second position of the line renderer to the fullest extent of the gun's range.
                 gunLine.SetPosition(1, shootRay.origin + shootRay.direction * range);
             }

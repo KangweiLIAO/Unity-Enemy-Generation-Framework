@@ -1,31 +1,25 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
-using System.Collections;
+using TMPro;
 
-namespace CompleteProject
-{
-    public class ScoreManager : MonoBehaviour
-    {
+namespace CompleteProject {
+    public class ScoreManager : MonoBehaviour {
         public static int score;        // The player's score.
+        TextMeshProUGUI scoreText;           // Reference to the Text component.
+        [SerializeField] TextMeshProUGUI summonText;
 
-
-        Text text;                      // Reference to the Text component.
-
-
-        void Awake ()
-        {
+        void Awake() {
             // Set up the reference.
-            text = GetComponent <Text> ();
+            scoreText = GetComponent<TextMeshProUGUI>();
 
             // Reset the score.
             score = 0;
         }
 
-
-        void Update ()
-        {
+        void Update() {
             // Set the displayed text to be the word "Score" followed by the score value.
-            text.text = "Score: " + score;
+            scoreText.text = "Score: " + score;
+            summonText.text = "Summon Cost: " + GameObject.Find("GEG Player").
+                GetComponent<GEGPlayerHealth>().summonCost;
         }
     }
 }

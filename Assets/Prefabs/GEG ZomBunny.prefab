@@ -129,13 +129,13 @@ GameObject:
   - component: {fileID: 6935001879531811010}
   - component: {fileID: 6935001879531916194}
   - component: {fileID: 6935001879559470626}
+  - component: {fileID: 6935001879539247746}
   - component: {fileID: 3462926468909622104}
   - component: {fileID: -4014892987054342936}
   - component: {fileID: 3226923918045281243}
-  - component: {fileID: 6935001879539247746}
   m_Layer: 6
   m_Name: GEG ZomBunny
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -155,7 +155,7 @@ Transform:
   - {fileID: 6935001879543902022}
   - {fileID: 6935001879543902018}
   - {fileID: 6935001879543902020}
-  - {fileID: 706993515131516882}
+  - {fileID: 5749875694079352814}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -235,7 +235,7 @@ NavMeshAgent:
   m_Speed: 3
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 180
   m_StoppingDistance: 1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -244,52 +244,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &3462926468909622104
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6935001879544263520}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49b669be06cb7c14bb686442c5069527, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _character: {fileID: 11400000, guid: 31a2bdfbe674c064ebb60ab486155dbb, type: 2}
-  timeBetweenAttacks: 0
-  attackDamage: 0
---- !u!114 &-4014892987054342936
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6935001879544263520}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc71e2662c1f27c4c99cf347e8bee284, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _character: {fileID: 11400000, guid: 31a2bdfbe674c064ebb60ab486155dbb, type: 2}
-  startingHealth: 0
-  currentHealth: 0
-  sinkSpeed: 2.5
-  scoreValue: 10
-  deathClip: {fileID: 0}
---- !u!114 &3226923918045281243
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6935001879544263520}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14fb7e916e4122c48b02c02bd2c48d32, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _character: {fileID: 11400000, guid: 31a2bdfbe674c064ebb60ab486155dbb, type: 2}
 --- !u!82 &6935001879539247746
 AudioSource:
   m_ObjectHideFlags: 0
@@ -387,6 +341,61 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3462926468909622104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6935001879544263520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49b669be06cb7c14bb686442c5069527, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <GEGCharacter>k__BackingField: {fileID: 11400000, guid: 31a2bdfbe674c064ebb60ab486155dbb,
+    type: 2}
+  <IntensityScalar>k__BackingField: 0
+  <IncreaseIntensity>k__BackingField: 0
+  timeBetweenAttacks: 0
+  attackDamage: 0
+--- !u!114 &-4014892987054342936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6935001879544263520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc71e2662c1f27c4c99cf347e8bee284, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <GEGCharacter>k__BackingField: {fileID: 11400000, guid: 31a2bdfbe674c064ebb60ab486155dbb,
+    type: 2}
+  <IntensityScalar>k__BackingField: 0.8
+  <IncreaseIntensity>k__BackingField: 1
+  startingHealth: 0
+  currentHealth: 0
+  sinkSpeed: 2.5
+  scoreValue: 10
+  deathClip: {fileID: 0}
+--- !u!114 &3226923918045281243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6935001879544263520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14fb7e916e4122c48b02c02bd2c48d32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <GEGCharacter>k__BackingField: {fileID: 11400000, guid: 31a2bdfbe674c064ebb60ab486155dbb,
+    type: 2}
+  <IntensityScalar>k__BackingField: 0
+  <IncreaseIntensity>k__BackingField: 0
 --- !u!1 &6935001879544263522
 GameObject:
   m_ObjectHideFlags: 0
@@ -10208,7 +10217,7 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!1001 &5072802948309331364
+--- !u!1001 &27620584408188312
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10218,7 +10227,7 @@ PrefabInstance:
     - target: {fileID: 5740270643734321781, guid: e7d7eca34b2cb294a8e03b88f776afd4,
         type: 3}
       propertyPath: m_Name
-      value: GEG Enemy Info
+      value: GEG Debug Info
       objectReference: {fileID: 0}
     - target: {fileID: 5740270643734321782, guid: e7d7eca34b2cb294a8e03b88f776afd4,
         type: 3}
@@ -10233,7 +10242,7 @@ PrefabInstance:
     - target: {fileID: 5740270643734321782, guid: e7d7eca34b2cb294a8e03b88f776afd4,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3
+      value: 2.66
       objectReference: {fileID: 0}
     - target: {fileID: 5740270643734321782, guid: e7d7eca34b2cb294a8e03b88f776afd4,
         type: 3}
@@ -10277,9 +10286,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7d7eca34b2cb294a8e03b88f776afd4, type: 3}
---- !u!4 &706993515131516882 stripped
+--- !u!4 &5749875694079352814 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5740270643734321782, guid: e7d7eca34b2cb294a8e03b88f776afd4,
     type: 3}
-  m_PrefabInstance: {fileID: 5072802948309331364}
+  m_PrefabInstance: {fileID: 27620584408188312}
   m_PrefabAsset: {fileID: 0}

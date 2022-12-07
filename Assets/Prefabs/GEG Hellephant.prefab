@@ -9987,7 +9987,7 @@ GameObject:
   - component: {fileID: 8812071009235234345}
   m_Layer: 6
   m_Name: GEG Hellephant
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10008,7 +10008,7 @@ Transform:
   - {fileID: 5864607147014741029}
   - {fileID: 5864607147014740855}
   - {fileID: 5864607147014681235}
-  - {fileID: 8613413043067948120}
+  - {fileID: 3237782840646719494}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10206,7 +10206,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49b669be06cb7c14bb686442c5069527, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _character: {fileID: 11400000, guid: b3dab9feb236ee442b797ab88c3f6255, type: 2}
+  <GEGCharacter>k__BackingField: {fileID: 11400000, guid: b3dab9feb236ee442b797ab88c3f6255,
+    type: 2}
+  <IntensityScalar>k__BackingField: 0
+  <IncreaseIntensity>k__BackingField: 0
   timeBetweenAttacks: 0
   attackDamage: 0
 --- !u!114 &2557328857658494450
@@ -10221,7 +10224,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc71e2662c1f27c4c99cf347e8bee284, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _character: {fileID: 11400000, guid: b3dab9feb236ee442b797ab88c3f6255, type: 2}
+  <GEGCharacter>k__BackingField: {fileID: 11400000, guid: b3dab9feb236ee442b797ab88c3f6255,
+    type: 2}
+  <IntensityScalar>k__BackingField: 1
+  <IncreaseIntensity>k__BackingField: 1
   startingHealth: 0
   currentHealth: 0
   sinkSpeed: 2.5
@@ -10239,8 +10245,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14fb7e916e4122c48b02c02bd2c48d32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _character: {fileID: 11400000, guid: b3dab9feb236ee442b797ab88c3f6255, type: 2}
---- !u!1001 &4044641734518052398
+  <GEGCharacter>k__BackingField: {fileID: 11400000, guid: b3dab9feb236ee442b797ab88c3f6255,
+    type: 2}
+  <IntensityScalar>k__BackingField: 0
+  <IncreaseIntensity>k__BackingField: 0
+--- !u!1001 &7153796391770866288
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10250,7 +10259,7 @@ PrefabInstance:
     - target: {fileID: 5740270643734321781, guid: e7d7eca34b2cb294a8e03b88f776afd4,
         type: 3}
       propertyPath: m_Name
-      value: GEG Enemy Info
+      value: GEG Debug Info
       objectReference: {fileID: 0}
     - target: {fileID: 5740270643734321782, guid: e7d7eca34b2cb294a8e03b88f776afd4,
         type: 3}
@@ -10265,7 +10274,7 @@ PrefabInstance:
     - target: {fileID: 5740270643734321782, guid: e7d7eca34b2cb294a8e03b88f776afd4,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3
+      value: 3.45
       objectReference: {fileID: 0}
     - target: {fileID: 5740270643734321782, guid: e7d7eca34b2cb294a8e03b88f776afd4,
         type: 3}
@@ -10280,17 +10289,17 @@ PrefabInstance:
     - target: {fileID: 5740270643734321782, guid: e7d7eca34b2cb294a8e03b88f776afd4,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5740270643734321782, guid: e7d7eca34b2cb294a8e03b88f776afd4,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5740270643734321782, guid: e7d7eca34b2cb294a8e03b88f776afd4,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5740270643734321782, guid: e7d7eca34b2cb294a8e03b88f776afd4,
         type: 3}
@@ -10309,9 +10318,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7d7eca34b2cb294a8e03b88f776afd4, type: 3}
---- !u!4 &8613413043067948120 stripped
+--- !u!4 &3237782840646719494 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5740270643734321782, guid: e7d7eca34b2cb294a8e03b88f776afd4,
     type: 3}
-  m_PrefabInstance: {fileID: 4044641734518052398}
+  m_PrefabInstance: {fileID: 7153796391770866288}
   m_PrefabAsset: {fileID: 0}

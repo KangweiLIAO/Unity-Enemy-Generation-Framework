@@ -1,5 +1,5 @@
 namespace GEGFramework {
     public interface IGEGController {
-        GEGCharacter Character { get; set; }
+        GEGCharacter GEGCharacter { get; set; }
     }
 }

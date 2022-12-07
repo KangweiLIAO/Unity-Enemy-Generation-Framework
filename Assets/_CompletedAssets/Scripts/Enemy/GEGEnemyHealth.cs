@@ -1,18 +1,20 @@
 ﻿using UnityEngine;
 using GEGFramework;
 
-namespace CompleteProject
-{
-    public class GEGEnemyHealth : MonoBehaviour, IGEGController
-    {
-        public GEGCharacter _character;
-        public GEGCharacter Character
-        {
-            get => _character;
-            set => _character = value;
-        }
-        public int startingHealth;            // The amount of health the enemy starts the game with.
-        public int currentHealth;                   // The current health the enemy has.
+namespace CompleteProject {
+    public class GEGEnemyHealth : MonoBehaviour, IGEGController {
+
+        [field: SerializeField]
+        public GEGCharacter GEGCharacter { get; set; }
+
+        [field: SerializeField]
+        public float IntensityScalar { get; set; }
+
+        [field: SerializeField]
+        public bool IncreaseIntensity { get; set; }
+
+        public float startingHealth;                  // The amount of health the enemy starts the game with.
+        public float currentHealth;                   // The current health the enemy has.
         public float sinkSpeed = 2.5f;              // The speed at which the enemy sinks through the floor when dead.
         public int scoreValue = 10;                 // The amount added to the player's score when the enemy dies.
         public AudioClip deathClip;                 // The sound to play when the enemy dies.
@@ -27,63 +29,62 @@ namespace CompleteProject
         bool isSinking;                             // Whether the enemy has started sinking through the floor.
 
 
-        void Awake ()
-        {
+        void Awake() {
             // Setting up the references.
-            anim = GetComponent <Animator> ();
-            enemyAudio = GetComponent <AudioSource> ();
-            hitParticles = GetComponentInChildren <ParticleSystem> ();
-            capsuleCollider = GetComponent <CapsuleCollider> ();
+            anim = GetComponent<Animator>();
+            enemyAudio = GetComponent<AudioSource>();
+            hitParticles = GetComponentInChildren<ParticleSystem>();
+            capsuleCollider = GetComponent<CapsuleCollider>();
         }
-        void Start()
-        {
-            startingHealth = (int)_character["ZomBearHealth"].value;
-            // Setting the current health when the enemy first spawns.
-            currentHealth = startingHealth;
+
+        void OnEnable() {
+            string name = GEGCharacter.name + "Health";
+            startingHealth = GEGCharacter[name].value;
+            currentHealth = startingHealth; // Setting the current health when the enemy first spawns.
         }
 
 
-        void Update ()
-        {
+        void Update() {
             // If the enemy should be sinking...
-            if(isSinking)
-            {
+            if (isSinking) {
                 // ... move the enemy down by the sinkSpeed per second.
-                transform.Translate (-Vector3.up * sinkSpeed * Time.deltaTime);
+                transform.Translate(-Vector3.up * sinkSpeed * Time.deltaTime);
             }
         }
 
 
-        public void TakeDamage (int amount, Vector3 hitPoint)
-        {
+        public void TakeDamage(int amount, Vector3 hitPoint) {
             // If the enemy is dead...
-            if(isDead)
+            if (isDead)
                 // ... no need to take damage so exit the function.
                 return;
 
             // Play the hurt sound effect.
-            enemyAudio.Play ();
+            enemyAudio.Play();
 
             // Reduce the current health by the amount of damage sustained.
             currentHealth -= amount;
-            
+
             // Set the position of the particle system to where the hit was sustained.
             hitParticles.transform.position = hitPoint;
 
             // And play the particles.
             hitParticles.Play();
 
+            // If taking damage, inform intensity manager:
+            IntensityManager.Instance.UpdateIntensity(currentHealth / startingHealth,
+                    GEGCharacter[GEGCharacter.name + "Health"].intensityScalar, 
+                    GEGCharacter[GEGCharacter.name + "Health"].increaseIntensity); 
+
             // If the current health is less than or equal to zero...
-            if(currentHealth <= 0)
-            {
+            if (currentHealth <= 0) {
                 // ... the enemy is dead.
-                Death ();
+                Death();
             }
         }
 
 
-        void Death ()
-        {
+        void Death() {
             // The enemy is dead.
             isDead = true;
 
@@ -91,21 +92,20 @@ namespace CompleteProject
             capsuleCollider.isTrigger = true;
 
             // Tell the animator that the enemy is dead.
-            anim.SetTrigger ("Dead");
+            anim.SetTrigger("Dead");
 
             // Change the audio clip of the audio source to the death clip and play it (this will stop the hurt clip playing).
             enemyAudio.clip = deathClip;
-            enemyAudio.Play ();
+            enemyAudio.Play();
         }
 
 
-        public void StartSinking ()
-        {
+        public void StartSinking() {
             // Find and disable the Nav Mesh Agent.
-            GetComponent <UnityEngine.AI.NavMeshAgent> ().enabled = false;
+            GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
 
             // Find the rigidbody component and make it kinematic (since we use Translate to sink the enemy).
-            GetComponent <Rigidbody> ().isKinematic = true;
+            GetComponent<Rigidbody>().isKinematic = true;
 
             // The enemy should no sink.
             isSinking = true;
@@ -114,7 +114,7 @@ namespace CompleteProject
             ScoreManager.score += scoreValue;
 
             // After 2 seconds destory the enemy.
-            Destroy (gameObject, 2f);
+            Destroy(gameObject, 2f);
         }
     }
 }

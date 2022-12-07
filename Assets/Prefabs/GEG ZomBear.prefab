@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 8725513158562195804}
   m_Layer: 6
   m_Name: GEG ZomBear
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -128,7 +128,7 @@ Transform:
   - {fileID: 8725513158572327068}
   - {fileID: 8725513158572327064}
   - {fileID: 8725513158572327070}
-  - {fileID: 4520608857875647243}
+  - {fileID: 4659494289524401574}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -326,7 +326,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49b669be06cb7c14bb686442c5069527, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _character: {fileID: 11400000, guid: f6d8f53cce830c949a00109a69406610, type: 2}
+  <GEGCharacter>k__BackingField: {fileID: 11400000, guid: f6d8f53cce830c949a00109a69406610,
+    type: 2}
+  <IntensityScalar>k__BackingField: 0
+  <IncreaseIntensity>k__BackingField: 0
   timeBetweenAttacks: 0
   attackDamage: 0
 --- !u!114 &728362404608584517
@@ -341,7 +344,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc71e2662c1f27c4c99cf347e8bee284, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _character: {fileID: 11400000, guid: f6d8f53cce830c949a00109a69406610, type: 2}
+  <GEGCharacter>k__BackingField: {fileID: 11400000, guid: f6d8f53cce830c949a00109a69406610,
+    type: 2}
+  <IntensityScalar>k__BackingField: 0.5
+  <IncreaseIntensity>k__BackingField: 1
   startingHealth: 0
   currentHealth: 0
   sinkSpeed: 2.5
@@ -359,7 +365,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14fb7e916e4122c48b02c02bd2c48d32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _character: {fileID: 11400000, guid: f6d8f53cce830c949a00109a69406610, type: 2}
+  <GEGCharacter>k__BackingField: {fileID: 11400000, guid: f6d8f53cce830c949a00109a69406610,
+    type: 2}
+  <IntensityScalar>k__BackingField: 0
+  <IncreaseIntensity>k__BackingField: 0
 --- !u!114 &8725513158562195804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10221,7 +10230,7 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
---- !u!1001 &8148670281964753277
+--- !u!1001 &1080952843008163792
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10231,7 +10240,7 @@ PrefabInstance:
     - target: {fileID: 5740270643734321781, guid: e7d7eca34b2cb294a8e03b88f776afd4,
         type: 3}
       propertyPath: m_Name
-      value: GEG Enemy Info
+      value: GEG Debug Info
       objectReference: {fileID: 0}
     - target: {fileID: 5740270643734321782, guid: e7d7eca34b2cb294a8e03b88f776afd4,
         type: 3}
@@ -10246,7 +10255,7 @@ PrefabInstance:
     - target: {fileID: 5740270643734321782, guid: e7d7eca34b2cb294a8e03b88f776afd4,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2
+      value: 2.29
       objectReference: {fileID: 0}
     - target: {fileID: 5740270643734321782, guid: e7d7eca34b2cb294a8e03b88f776afd4,
         type: 3}
@@ -10290,9 +10299,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7d7eca34b2cb294a8e03b88f776afd4, type: 3}
---- !u!4 &4520608857875647243 stripped
+--- !u!4 &4659494289524401574 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5740270643734321782, guid: e7d7eca34b2cb294a8e03b88f776afd4,
     type: 3}
-  m_PrefabInstance: {fileID: 8148670281964753277}
+  m_PrefabInstance: {fileID: 1080952843008163792}
   m_PrefabAsset: {fileID: 0}
