@@ -87,7 +87,7 @@ namespace GEGFramework {
                 while (totalSpawn > 0) { // while temp is not empty
                     int randType = Random.Range(0, temp.Count);
                     float randSpawnInterval = Random.Range(0.5f, maxSpawnInterval);
-                    int randPoint = Random.Range(0, PackedData.Instance.enemySpawnPoints.Count - 1); // spawn at random spawn point
+                    int randPoint = Random.Range(0, PackedData.Instance.enemySpawnPoints.Count); // spawn at random spawn point
 
                     var obj = GameObject.Find(PackedData.Instance.enemySpawnPoints[randPoint]);
                     if (obj != null) {

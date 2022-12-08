@@ -561,22 +561,22 @@ MonoBehaviour:
   _intensity: 0
   currentMode: 0
   autoDecreaseAmount: 1
-  autoDecreaseCooldown: 2
-  easyModeDuration: 3
-  hardModeDuration: 3
+  autoDecreaseCooldown: 1.5
+  easyModeDuration: 2
+  hardModeDuration: 2
   hardEntryThreshold: 70
-  adjustment: 10
+  adjustment: 5
   expectedFlexibility: 5
   expectEasyIntensity: 5
-  easyIntensityIncScalar: 1
-  easyIntensityDecScalar: 3
+  easyIntensityIncScalar: 0.7
+  easyIntensityDecScalar: 2
   expectNormalIntensity: 60
-  normalIntensityIncScalar: 1
-  normalIntensityDecScalar: 2
+  normalIntensityIncScalar: 0.8
+  normalIntensityDecScalar: 1
   expectHardIntensity: 90
-  hardIntensityIncScalar: 1
-  hardIntensityDecScalar: 1
-  cumulationRate: 1
+  hardIntensityIncScalar: 0.7
+  hardIntensityDecScalar: 1.5
+  cumulationRate: 0.1
 --- !u!114 &2651012383412161553
 MonoBehaviour:
   m_ObjectHideFlags: 0

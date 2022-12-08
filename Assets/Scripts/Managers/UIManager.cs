@@ -47,9 +47,11 @@ namespace GEGFramework {
 
         public void ToggleDebugUI() {
             if (debugEnabled) {
+                modeText.enabled = true;
                 waveText.enabled = true;
                 intensityText.enabled = true;
             } else {
+                modeText.enabled = false;
                 waveText.enabled = false;
                 intensityText.enabled = false;
             }

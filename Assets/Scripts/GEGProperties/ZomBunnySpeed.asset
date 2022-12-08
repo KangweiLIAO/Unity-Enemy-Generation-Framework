@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   propertyName: ZomBunnySpeed
   enabled: 1
-  value: 5
-  defaultValue: 5
+  value: 4.5
+  defaultValue: 4.5
   difficultyImportance: 60
-  intensityImportance: 0
+  intensityScalar: 0
   increaseIntensity: 0

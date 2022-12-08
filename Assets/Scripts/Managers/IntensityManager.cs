@@ -73,8 +73,8 @@ namespace GEGFramework {
         }
 
         void OnEnable() {
-            Spawner.OnNewWaveStart += (_) => {
-                cumulation *= 1 + cumulationRate / 100;
+            Spawner.OnNewWaveStart += (int wave) => {
+                cumulation = wave * cumulationRate / 100; // cumulate difficulty
                 coolDownTimer = autoDecreaseCooldown;
                 UpdateGameMode(); // Udpate game mode when new wave starts
             };
@@ -148,52 +148,59 @@ namespace GEGFramework {
             durationCounter++;
             switch (currentMode) {
                 case GameMode.Easy:
-                    if (durationCounter > easyModeDuration) {
-                        durationCounter = 0;
-                        currentMode = GameMode.Normal;
-                    }
-                    if (_intensity > expectEasyIntensity + expectedFlexibility) { // relax mode is too hard
+                    if (_intensity > expectEasyIntensity + expectedFlexibility) {
+                        // easy mode is too hard
                         UpdateAllEnemyProperty(false, adjustment);
                         easyIntensityDecScalar *= 1 + adjustment / 100; // since difficulty decreased, scalar should decrease too
-                    } else if (_intensity < expectEasyIntensity - expectedFlexibility) { // relax mode is too easy
+                    } else if (_intensity < expectEasyIntensity - expectedFlexibility) {
+                        // easy mode is too easy
                         UpdateAllEnemyProperty(true, adjustment);
                         easyIntensityIncScalar *= 1 + adjustment / 100; // since difficulty increase, scalar should increase too
                     } // else within expect intensity
                     UpdateEnemyQuantity(0, 2);
                     UpdateEnemyQuantity(1, 2);
                     UpdateEnemyQuantity(2, 0);
+                    _intensity = expectEasyIntensity; // otherwise, intensity dropping too slow after switching to easy mode
+                    if (durationCounter == easyModeDuration + 1) {
+                        durationCounter = 0;
+                        currentMode = GameMode.Normal;
+                    }
                     break;
                 case GameMode.Normal:
-                    if (_intensity >= hardEntryThreshold) {
-                        durationCounter = 0;
-                        currentMode = GameMode.Hard;
-                    }
-                    if (_intensity > expectNormalIntensity + expectedFlexibility) { // normal mode is too hard
+                    if (_intensity > expectNormalIntensity + expectedFlexibility) {
+                        // normal mode is too hard
                         UpdateAllEnemyProperty(false, adjustment);
                         normalIntensityDecScalar *= 1 + adjustment / 100;
-                    } else if (_intensity < expectNormalIntensity - expectedFlexibility) { // normal mode is too easy
+                    } else if (_intensity < expectNormalIntensity - expectedFlexibility) {
+                        // normal mode is too easy
                         UpdateAllEnemyProperty(true, adjustment);
                         normalIntensityIncScalar *= 1 + adjustment / 100;
                     } // else within expect intensity
                     UpdateEnemyQuantity(0, 2);
                     UpdateEnemyQuantity(1, 2);
                     UpdateEnemyQuantity(2, 2);
+                    if (_intensity >= hardEntryThreshold) {
+                        durationCounter = 0;
+                        currentMode = GameMode.Hard;
+                    }
                     break;
                 case GameMode.Hard:
-                    if (durationCounter > hardModeDuration) {
-                        durationCounter = 0;
-                        currentMode = GameMode.Easy;
-                    }
-                    if (_intensity > expectHardIntensity + expectedFlexibility) { // hard mode is too hard
+                    if (_intensity > expectHardIntensity + expectedFlexibility) {
+                        // hard mode is too hard
                         UpdateAllEnemyProperty(false, adjustment);
                         hardIntensityDecScalar *= 1 + adjustment / 100;
-                    } else if (_intensity < expectHardIntensity - expectedFlexibility) { // hard mode is too easy
+                    } else if (_intensity < expectHardIntensity - expectedFlexibility) {
+                        // hard mode is too easy
                         UpdateAllEnemyProperty(true, adjustment);
                         hardIntensityIncScalar *= 1 + adjustment / 100;
                     } // else within expect intensity
                     UpdateEnemyQuantity(0, 5);
                     UpdateEnemyQuantity(1, 5);
                     UpdateEnemyQuantity(2, 3);
+                    if (durationCounter == hardModeDuration + 1) {
+                        durationCounter = 0;
+                        currentMode = GameMode.Easy;
+                    }
                     break;
             }
         }
@@ -211,7 +218,7 @@ namespace GEGFramework {
                     foreach (GEGProperty prop in c.properties) {
                         if (prop.enabled) { // if the property enabled for evaluation, calculate adjustment value
                             float temp_adj = increase ?
-                                prop.defaultValue * ((adjustment + cumulation) / 100) * (prop.difficultyImportance / 100)
+                                prop.defaultValue * ((adjustment / 100) + cumulation) * (prop.difficultyImportance / 100)
                                 : prop.defaultValue * (adjustment / 100) * (prop.difficultyImportance / 100);
                             prop.value += increase ? temp_adj : -temp_adj; // update property's value
                         }
